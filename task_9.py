@@ -1,18 +1,26 @@
-# 9. Среди натуральных чисел, которые были введены, найти наибольшее по сумме цифр.
-# Вывести на экран это число и сумму его цифр.
+#9. Найти максимальный элемент среди минимальных элементов столбцов матрицы.
 
-max_sum = 0
-while True:
-    num = int(input('Введите целое число. Для завершения ввода чисел укажите "0": '))
-    if num == 0:
-        break
-    digit_sum = 0
-    n = num
-    while num % 10 != 0 or num // 10 != 0:
-        digit_sum += num % 10
-        num //= 10
-    if digit_sum > max_sum:
-        max_sum = digit_sum
-        max_num = n
-print(f'У числа {max_num} наибольшая сумма цифр. Эта сумма равна {max_sum}')
 
+import random
+
+matrix = [[random.randint(1, 10) for _ in range(5)] for _ in range(4)]
+for i, line in enumerate(matrix):
+    if i == 0:
+        min_line = line.copy()
+        for item in line:
+            print(f'{item:>5}', end='')
+        print()
+        continue
+    for idx, item in enumerate(line):
+        if item < min_line[idx]:
+            min_line[idx] = item
+        print(f'{item:>5}', end='')
+    print()
+print('-' * len(min_line) * 5)
+max_min = min_line[0]
+for item in min_line:
+    print(f'{item:>5}', end='')
+    if item > max_min:
+        max_min = item
+print()
+print(f'Максимальный элемент среди минимальных элементов столбцов матрицы  {max_min}')

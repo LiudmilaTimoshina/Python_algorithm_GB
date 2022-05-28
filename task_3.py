@@ -1,9 +1,13 @@
-# 3. Сформировать из введенного числа обратное по порядку входящих в него цифр и вывести на экран.
-# Например, если введено число 3486, то надо вывести число 6843.
+# 3. В массиве случайных целых чисел поменять местами минимальный и максимальный элементы.
 
-num = int(input('Введите целое число: '))
-inversion = 0
-while num % 10 != 0 or num // 10 != 0:
-    inversion = inversion * 10 + num % 10
-    num //= 10
-print(f'Обратное число {inversion}')
+import random
+
+num_list = [random.randint(0, 100) for _ in range(10)]
+print(f'Исходный список:\n{num_list}')
+max_el = max(num_list)
+max_idx = num_list.index(max(num_list))
+min_el = min(num_list)
+min_idx = num_list.index(min_el)
+num_list[min_idx] = max_el
+num_list[max_idx] = min_el
+print('Список, в котором изменены местами максимальный и минимальный элементы:\n', num_list)
